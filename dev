@@ -1,0 +1,14 @@
+#!/bin/bash
+
+source ./.env
+
+KEY=${KEY:-"service-account.json"}
+
+export GOOGLE_APPLICATION_CREDENTIALS="`pwd`/${KEY}"
+export FLASK_ENV=development
+export FLASK_APP=main.py
+
+echo "Service account key file: ${GOOGLE_APPLICATION_CREDENTIALS}"
+echo "Starting server"
+
+flask run --host=$APP_HOST --port=$APP_PORT

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+source ./.env
+
+KEY=${KEY:-"service-account.json"}
+WORKER_TIMEOUT=${WORKER_TIMEOUT:-300}
+WORKERS_COUNT=${WORKERS_COUNT:-1}
+
+export GOOGLE_APPLICATION_CREDENTIALS="`pwd`/${KEY}"
+
+echo -e "---"
+echo -e "Starting in production mode"
+echo -e "Service account key file: ${GOOGLE_APPLICATION_CREDENTIALS}"
+echo -e "---"
+echo -e "Settings:"
+echo -e "APP_HOST:\t${APP_HOST}"
+echo -e "APP_PORT:\t${APP_PORT}"
+echo -e "WORKER_TIMEOUT:\t${WORKER_TIMEOUT}"
+echo -e "WORKERS_COUNT:\t${WORKERS_COUNT}"
+echo -e "---"
+
+gunicorn \
+  -t $WORKER_TIMEOUT \
+  -w $WORKERS_COUNT \
+  --log-level info \
+  -b $APP_HOST:$APP_PORT \
+  -m 007 \
+  main:app
