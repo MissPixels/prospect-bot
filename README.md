@@ -113,4 +113,4 @@ http://127.0.0.1:5000/process-image?image_url=https://i.imgur.com/ByVWQfM.jpg
 
 - **[Isabelle Gagné](http://www.isabellegagne.ca/)** - multimedia artist
 - **[Paul Gascou-Vaillancourt](https://paulgv.com/)** - programmer
-- **Stéphane Archambault** - author
+- **Stéphane Archambault** - poem
