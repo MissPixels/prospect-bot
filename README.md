@@ -44,6 +44,7 @@ We then compose the final image by taking a slice of each version of the image, 
 ## Requirements
 
 - Python >=3.6.5
+- OpenCV-Python
 - pixelsort
 - MongoDB
 
