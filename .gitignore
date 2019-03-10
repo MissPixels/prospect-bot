@@ -5,6 +5,9 @@
 # pixelsort repo
 /pixelsort/
 
+# Combinations file
+combinations.txt
+
 # macOS.gitignore
 # https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
 
