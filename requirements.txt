@@ -13,7 +13,7 @@ cycler==0.10.0
 dlib==19.16.0
 fake-useragent==0.1.11
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 future==0.17.1
 google-api-core==1.4.0
 google-auth==1.5.1
