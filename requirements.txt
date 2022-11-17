@@ -25,10 +25,10 @@ idna==2.7
 itsdangerous==0.24
 Jinja2==2.10
 kiwisolver==1.0.1
-lxml==4.2.5
+lxml==4.9.1
 MarkupSafe==1.0
 matplotlib==3.0.1
-numpy==1.15.4
+numpy==1.22.2
 oauthlib==3.0.1
 opencv-python==3.4.3.18
 parse==1.9.0
@@ -54,7 +54,7 @@ six==1.11.0
 toml==0.10.0
 tqdm==4.28.1
 tracery==0.1.1
-urllib3==1.23
+urllib3==1.26.5
 w3lib==1.19.0
-websockets==7.0
+websockets==10.0
 Werkzeug==0.14.1
