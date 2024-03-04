@@ -123,6 +123,8 @@ def create_app():
 
     @app.route("/process-image")
     def processImage():
+        if isAuthorizedRequest(request) == False:
+            return Response("Unauthorized", status=401)
         image = {"source": None, "url": request.args.get("image_url")}
         if image["url"] is None:
             image = pickImage()
@@ -200,60 +202,24 @@ def create_app():
         poem = generatePoem()
 
         # Persist to DB if request is authenticated
-        if isAuthorizedRequest(request):
-            model.insert(
-                {
-                    "originalUrl": image["url"],
-                    "finalImagePath": finalImageFilePath + "/",
-                    "gisement": image["sourceId"],
-                    "description": image["description"],
-                    "poem": poem,
-                    "color": currentColor,
-                    "slug": "{}-{}".format(
-                        image["sourceId"], re.sub(r"[^0-9]", "", finalImageFilePath)
-                    ),
-                    "active": True,
-                }
-            )
-            tweeter.tweet(
-                poem, finalImageFilePathFullPath, additionalText=image["twitterText"]
-            )
-            return Response("OK", status=200)
-
-        html = "<div>{}</div>".format(image["url"])
-        html += """
-            <img src="{}" />
-        """.format(
-            safe_join(config["Files"]["Root"], grabCutFilePath)
+        model.insert(
+            {
+                "originalUrl": image["url"],
+                "finalImagePath": finalImageFilePath + "/",
+                "gisement": image["sourceId"],
+                "description": image["description"],
+                "poem": poem,
+                "color": currentColor,
+                "slug": "{}-{}".format(
+                    image["sourceId"], re.sub(r"[^0-9]", "", finalImageFilePath)
+                ),
+                "active": True,
+            }
         )
-        html += """
-            <img src="{}" />
-        """.format(
-            safe_join(config["Files"]["Root"], countoursFilePath)
+        tweeter.tweet(
+            poem, finalImageFilePathFullPath, additionalText=image["twitterText"]
         )
-        html += """
-            <img src="{}" />
-        """.format(
-            safe_join(config["Files"]["Root"], pixelSortedFilePath)
-        )
-        html += """
-            <img src="{}" />
-        """.format(
-            safe_join(config["Files"]["Root"], finalImageFilePath + "/full.jpg")
-        )
-        html += """
-            <div>{}</div>
-        """.format(
-            nl2br(poem)
-        )
-        html += "<h1>Visually similar</h1>"
-        for link in visuallySimilarImagesLinks:
-            html += """
-                <img src="{}" />
-            """.format(
-                link
-            )
-        return Response(html, status=200)
+        return Response("OK", status=200)
 
     return app
 
