@@ -14,7 +14,7 @@ dlib==19.16.0
 fake-useragent==0.1.11
 Flask==1.0.2
 Flask-Cors==3.0.7
-future==0.17.1
+future==0.18.3
 google-api-core==1.4.0
 google-auth==1.5.1
 google-cloud-vision==0.34.0
