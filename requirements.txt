@@ -28,7 +28,7 @@ kiwisolver==1.0.1
 lxml==4.2.5
 MarkupSafe==1.0
 matplotlib==3.0.1
-numpy==1.15.4
+numpy==1.22.0rc1
 oauthlib==3.0.1
 opencv-python==3.4.3.18
 parse==1.9.0
